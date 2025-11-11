@@ -12,18 +12,29 @@ const Button = (props) =>{
   )
 }
 const App = () =>{
-  const [counter, setCounter] = useState(0)
-  const increse = () => setCounter(counter+1)
-  const zero = () => setCounter(0)
-  const handleClick = () =>{
-    console.log('click')
+  const [clicks, setClick] = useState({
+    left: 0, right: 0
+  })
+  const handleLeftClick = () =>{
+    const newClicks = {
+      left: clicks.left +1,
+      right: clicks.right
+    }
+    setClick(newClicks)
   }
-  console.log('rendering...', counter)
+  const handleRightClick = () =>{
+    const newClicks = {
+      left: clicks.left,
+      right: clicks.right +1
+    }
+    setClick(newClicks)
+  }
   return(
       <>
-        <Display counter = {counter}/>
-        <Button onClick = {increse} text = 'plus'/>
-        <Button onClick = {zero} text = 'zero'/>
+        {clicks.left}
+        <button onClick={handleLeftClick}>left</button>
+        <button onClick={handleRightClick}>right</button>
+        {clicks.right}
       </>
   )
 }
